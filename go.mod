@@ -1,3 +1,3 @@
-module github.com/project-vendor-github/project-name
+module github.com/permafrost-dev/compress-path
 
 go 1.19

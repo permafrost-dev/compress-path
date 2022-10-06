@@ -1,4 +1,4 @@
-# {{project.name.full}}
+# compress-path
 
 ---
 
@@ -35,7 +35,7 @@ Some of the default values are automatically determined based on your git config
 
 <!-- ==END TEMPLATE README== -->
 
-{{project.description}}
+Compress a path into a shorter string
 
 ## Setup
 
@@ -59,7 +59,7 @@ Please review [our security policy](../../security/policy) on how to report secu
 
 ## Credits
 
-- [{{project.author.name}}](https://github.com/{{project.author.github}})
+- [Patrick Organ](https://github.com/patinthehat)
 - [All Contributors](../../contributors)
 
 ## License

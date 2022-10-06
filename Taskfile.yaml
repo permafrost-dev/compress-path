@@ -16,24 +16,24 @@ tasks:
 
   build:
     cmds:
-      - task: build-{{project.name}}
+      - task: build-compress-path
 
   lint:
     cmds:
-      - task: lint-{{project.name}}
+      - task: lint-compress-path
 
-  lint-{{project.name}}:
+  lint-compress-path:
     desc: Runs golangci-lint
     sources:
-      - './cmd/{{project.name}}/**/*.go'
+      - './cmd/compress-path/**/*.go'
     cmds:
-      - golangci-lint run ./cmd/{{project.name}}
+      - golangci-lint run ./cmd/compress-path
 
-  build-{{project.name}}:
-    desc: Builds {{project.name}} binary
+  build-compress-path:
+    desc: Builds compress-path binary
     sources:
-      - './cmd/{{project.name}}/**/*.go'
+      - './cmd/compress-path/**/*.go'
     generates:
-      - ./dist/{{project.name}}
+      - ./dist/compress-path
     cmds:
-      - go build -trimpath -ldflags="-s -w -X main.Version={{.VERSION}}-{{.GIT_COMMIT}}" -o dist ./cmd/{{project.name}}
+      - go build -trimpath -ldflags="-s -w -X main.Version={{.VERSION}}-{{.GIT_COMMIT}}" -o dist ./cmd/compress-path

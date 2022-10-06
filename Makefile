@@ -3,14 +3,14 @@ GOVARS = -X main.Version=$(VERSION)
 SYSTEM = ${GOOS}_${GOARCH}
 
 build:
-	rm dist/{{project.name}}
-	go build -trimpath -ldflags "-s -w -X main.Version=0.1.5-dev" -o dist ./cmd/{{project.name}}
+	rm dist/compress-path
+	go build -trimpath -ldflags "-s -w -X main.Version=0.1.5-dev" -o dist ./cmd/compress-path
 
 build-dist:
-	go build -trimpath -ldflags "-s -w $(GOVARS)" -o build/bin/{{project.name}}-$(VERSION)-$(SYSTEM) ./cmd/{{project.name}}
+	go build -trimpath -ldflags "-s -w $(GOVARS)" -o build/bin/compress-path-$(VERSION)-$(SYSTEM) ./cmd/compress-path
 
-{{project.name}}:
-	go build -trimpath -ldflags "-s -w $(GOVARS)" -o dist ./cmd/{{project.name}}
+compress-path:
+	go build -trimpath -ldflags "-s -w $(GOVARS)" -o dist ./cmd/compress-path
 
 build-dist-all:
 	go run tools/build-all.go
@@ -22,20 +22,20 @@ package-setup:
 
 package: build-dist package-setup
 
-	mkdir -p build/{{project.name}}-$(VERSION)-$(SYSTEM);\
-	cp README.md build/{{project.name}}-$(VERSION)-$(SYSTEM)
+	mkdir -p build/compress-path-$(VERSION)-$(SYSTEM);\
+	cp README.md build/compress-path-$(VERSION)-$(SYSTEM)
 	if [ "${GOOS}" = "windows" ]; then\
-		cp build/bin/{{project.name}}-$(VERSION)-$(SYSTEM) build/{{project.name}}-$(VERSION)-$(SYSTEM)/{{project.name}}.exe;\
+		cp build/bin/compress-path-$(VERSION)-$(SYSTEM) build/compress-path-$(VERSION)-$(SYSTEM)/compress-path.exe;\
 		cd build;\
-		zip -r -q -T archives/{{project.name}}-$(VERSION)-$(SYSTEM).zip {{project.name}}-$(VERSION)-$(SYSTEM);\
+		zip -r -q -T archives/compress-path-$(VERSION)-$(SYSTEM).zip compress-path-$(VERSION)-$(SYSTEM);\
 	else\
-		cp build/bin/{{project.name}}-$(VERSION)-$(SYSTEM) build/{{project.name}}-$(VERSION)-$(SYSTEM)/{{project.name}};\
+		cp build/bin/compress-path-$(VERSION)-$(SYSTEM) build/compress-path-$(VERSION)-$(SYSTEM)/compress-path;\
 		cd build;\
-		tar -czf archives/{{project.name}}-$(VERSION)-$(SYSTEM).tar.gz {{project.name}}-$(VERSION)-$(SYSTEM);\
+		tar -czf archives/compress-path-$(VERSION)-$(SYSTEM).tar.gz compress-path-$(VERSION)-$(SYSTEM);\
 	fi
 
 clean:
 	rm -rf build
 
 lint:
-	golangci-lint run cmd/{{project.name}}
+	golangci-lint run cmd/compress-path
