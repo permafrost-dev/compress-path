@@ -1,5 +1,5 @@
-env:
-  - GOPROXY="https://proxy.golang.org,direct"
+#env:
+#  - GOPROXY="https://proxy.golang.org,direct"
 
 universal_binaries:
   - replace: false
