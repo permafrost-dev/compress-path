@@ -39,3 +39,6 @@ clean:
 
 lint:
 	golangci-lint run cmd/compress-path
+
+install:
+	cp --force ./dist/compress-path ~/development/bin/compress-path

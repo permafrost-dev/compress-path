@@ -36,4 +36,12 @@ tasks:
     generates:
       - ./dist/compress-path
     cmds:
+      - mkdir ./dist
       - go build -trimpath -ldflags="-s -w -X main.Version={{.VERSION}}-{{.GIT_COMMIT}}" -o dist ./cmd/compress-path
+
+  install:
+    desc: Installs the compress-path binary
+    sources:
+      - './dist/compress-path'
+    cmds:
+      - cp --force ./dist/compress-path $HOME/development/bin/compress-path
