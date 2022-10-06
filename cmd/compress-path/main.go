@@ -11,12 +11,17 @@ import (
 )
 
 func main() {
+	if len(os.Args) > 1 && os.Args[1] == "--version" {
+		fmt.Println("compress-path " + Version)
+		os.Exit(0)
+	}
+
 	var (
 		matcher     *domain.Matcher
 		abbreviator domain.Abbreviator
 	)
 
-	path, err := filepath.Abs(".")
+	currentPath, err := filepath.Abs(".")
 
 	if err != nil {
 		fmt.Printf("%s", ".")
@@ -25,17 +30,17 @@ func main() {
 
 	homeDir, homeDirErr := os.UserHomeDir()
 
-	if homeDirErr == nil {
-		path = strings.Replace(path, homeDir, "~", 1)
+	if homeDirErr == nil && strings.Contains(currentPath, homeDir) {
+		currentPath = strings.Replace(currentPath, homeDir, "~", 1)
 	}
 
-	newPath := path
+	newPath := currentPath
 
-	if len(path) > 15 {
+	if len(currentPath) > 15 {
 		matcher = data.Abbreviations["en-us"]["common"]
 		abbreviator = matcher
 
-		parts := strings.Split(path, string(os.PathSeparator))
+		parts := strings.Split(currentPath, string(os.PathSeparator))
 
 		for i, v := range parts {
 			if i < len(parts)-1 && len(v) > 5 {

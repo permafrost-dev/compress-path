@@ -1,15 +1,16 @@
-VERSION=0.1.5-dev
+VERSION=$(shell GOOS=$(shell go env GOHOSTOS) GOARCH=$(shell go env GOHOSTARCH) \
+	go run tools/build-version.go)
 GOVARS = -X main.Version=$(VERSION)
 SYSTEM = ${GOOS}_${GOARCH}
 
-build:
+build: update-version-file
 	rm dist/compress-path
 	go build -trimpath -ldflags "-s -w -X main.Version=0.1.5-dev" -o dist ./cmd/compress-path
 
-build-dist:
+build-dist: update-version-file
 	go build -trimpath -ldflags "-s -w $(GOVARS)" -o build/bin/compress-path-$(VERSION)-$(SYSTEM) ./cmd/compress-path
 
-compress-path:
+compress-path: update-version-file
 	go build -trimpath -ldflags "-s -w $(GOVARS)" -o dist ./cmd/compress-path
 
 build-dist-all:
@@ -19,6 +20,9 @@ package-setup:
 	if [ ! -d "build/archives" ]; then\
 		mkdir -p build/archives;\
 	fi
+
+update-version-file:
+	printf "package main\n\nvar Version = \"{{.VERSION}}\"" > ./cmd/compress-path/version.go
 
 package: build-dist package-setup
 
@@ -36,6 +40,7 @@ package: build-dist package-setup
 
 clean:
 	rm -rf build
+	rm -f dist/compress-path
 
 lint:
 	golangci-lint run cmd/compress-path
