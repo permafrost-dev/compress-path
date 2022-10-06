@@ -36,13 +36,13 @@ builds:
       - amd64
       - arm64
 
-brews:
-  -
-    name: 'compress-path'
-    homepage: 'https://github.com/permafrost-dev/compress-path'
-    description: 'Compress a path into a shorter string'
-    license: "MIT"
-    tap:
-      owner: 'permafrost-dev'
-      name: homebrew-{{app.name}}
-      branch: main
+# brews:
+#   -
+#     name: 'compress-path'
+#     homepage: 'https://github.com/permafrost-dev/compress-path'
+#     description: 'Compress a path into a shorter string'
+#     license: "MIT"
+#     tap:
+#       owner: 'permafrost-dev'
+#       name: homebrew-{{app.name}}
+#       branch: main
