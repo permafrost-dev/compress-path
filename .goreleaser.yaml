@@ -1,0 +1,48 @@
+env:
+  - GOPROXY="https://proxy.golang.org,direct"
+
+universal_binaries:
+  - replace: false
+
+archives:
+  - id: default
+    wrap_in_directory: true
+
+before:
+  hooks:
+    - make {{project.name}}
+
+builds:
+  - main: ./cmd/{{project.name}}
+    binary: '{{project.name}}'
+
+    # Custom flags templates.
+    # Default is `-s -w -X main.version={{.Version}} -X main.commit={{.Commit}} -X main.date={{.Date}} -X main.builtBy=goreleaser`.
+    ldflags:
+      - -s -w -X main.build={{.Version}} -X main.commit={{.Commit}} -X main.date={{.Date}}
+
+    # GOOS list to build for.
+    # For more info refer to: https://golang.org/doc/install/source#environment
+    # Defaults are darwin and linux.
+    goos:
+      - darwin
+      - linux
+      - windows
+
+    # GOARCH to build for.
+    # For more info refer to: https://golang.org/doc/install/source#environment
+    # Defaults are 386, amd64 and arm64.
+    goarch:
+      - amd64
+      - arm64
+
+brews:
+  -
+    name: '{{project.name}}'
+    homepage: 'https://github.com/{{project.vendor.github}}/{{project.name}}'
+    description: '{{project.description}}'
+    license: "MIT"
+    tap:
+      owner: '{{project.vendor.github}}'
+      name: homebrew-{{app.name}}
+      branch: main
