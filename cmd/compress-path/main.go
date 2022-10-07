@@ -40,6 +40,9 @@ func main() {
 
 	parts := strings.Split(currentPath, string(os.PathSeparator))
 	newParts := make([]string, len(parts))
+
+	spaceChar := "\u2002"
+
 	var wg sync.WaitGroup
 	wg.Add(len(parts))
 
@@ -53,7 +56,7 @@ func main() {
 			}
 
 			if i == len(newParts)-1 {
-				newParts[i] = "%{\033[38;5;159m%}" + newParts[i] + "%{\033[38;5;0m%}"
+				newParts[i] = "%{\033[38;5;159m%}%{\033[1m%}" + newParts[i] + "%{\033[22m%}%{\033[38;5;0m%}"
 			} else {
 				newParts[i] = "%{\033[38;5;123m%}" + newParts[i] + "%{\033[38;5;0m%}"
 			}
@@ -63,5 +66,5 @@ func main() {
 	wg.Wait()
 	//sep := string(os.PathSeparator)
 	sep := "%{\033[38;5;255m%}\ue216%{\033[38;5;0m%}"
-	fmt.Printf("%s", strings.Join(newParts, sep))
+	fmt.Printf("%%{\033[38;5;231m%%}\uf554%s%%{\033[38;5;0m%%}%s", spaceChar, strings.Join(newParts, sep))
 }
