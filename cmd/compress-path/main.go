@@ -53,10 +53,11 @@ func main() {
 			}
 
 			if i == len(newParts)-1 {
-				newParts[i] = "\033[38;5;159m\033[1m" + newParts[i] + "\033[22m\033[38;5;0m"
-			} else {
-				newParts[i] = "\033[38;5;123m" + newParts[i] + "\033[38;5;0m"
+				newParts[i] = "\033[38;5;159m" + newParts[i] + "\033[38;5;0m"
 			}
+			//  else {
+			// 	newParts[i] = "\033[38;5;123m" + newParts[i] + "\033[38;5;0m"
+			// }
 		}(i, v)
 	}
 
