@@ -18,26 +18,26 @@ tasks:
   build:
     desc: Builds the binary
     cmds:
-      - task: build-compress-path
+      - task: build-app
 
   clean:
     desc: Cleans up build artifacts
     cmds:
       - rm -f ./dist/compress-path
+    status:
+      - test -f ./dist/compress-path
 
   lint:
     desc: Lints the code using golangci-lint
     cmds:
-      - task: lint-compress-path
+      - task: lint-app
 
-  lint-compress-path:
+  lint-app:
     desc: Runs golangci-lint
-    sources:
-      - './cmd/compress-path/**/*.go'
     cmds:
       - golangci-lint run ./cmd/compress-path
 
-  build-compress-path:
+  build-app:
     desc: Builds compress-path binary
     deps:
       - task: update-version-file
@@ -52,6 +52,9 @@ tasks:
   update-version-file:
     cmds:
       - printf "package main\n\nvar Version = \"{{.VERSION}}\"" > ./cmd/compress-path/version.go
+    status:
+      - test -f ./cmd/compress-path/version.go
+      - grep -q "\"{{.VERSION}}\"" ./cmd/compress-path/version.go
 
   install:
     desc: Installs the compress-path binary
