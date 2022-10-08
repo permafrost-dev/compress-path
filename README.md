@@ -4,7 +4,7 @@
 
 # compress-path
 
-[![Release](https://img.shields.io/github/release/permafrost-dev/compress-path.svg)](https://github.com/permafrost-dev/compress-path/releases/latest) [![Go Report Card](https://goreportcard.com/badge/github.com/permafrost-dev/compress-path)](https://goreportcard.com/report/github.com/permafrost-dev/compress-path)
+[![Release](https://img.shields.io/github/release/permafrost-dev/compress-path.svg)](https://github.com/permafrost-dev/compress-path/releases/latest) [![Go Report Card](https://goreportcard.com/badge/github.com/permafrost-dev/compress-path)](https://goreportcard.com/report/github.com/permafrost-dev/compress-path) [![Maintainability](https://api.codeclimate.com/v1/badges/65f5deac2eb526f18df7/maintainability)](https://codeclimate.com/github/permafrost-dev/compress-path/maintainability) ![Code Climate technical debt](https://img.shields.io/codeclimate/tech-debt/permafrost-dev/compress-path?logo=code-climate)
 
 ---
 
