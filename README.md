@@ -4,6 +4,8 @@
 
 # compress-path
 
+[![Release](https://img.shields.io/github/release/permafrost-dev/compress-path.svg)](https://github.com/permafrost-dev/compress-path/releases/latest) [![Go Report Card](https://goreportcard.com/badge/github.com/permafrost-dev/compress-path)](https://goreportcard.com/report/github.com/permafrost-dev/compress-path)
+
 ---
 
 Compress and abbreviate the parts of a pathname into a shorter overall string; for use within a Zsh prompt. Adds some minor styling, such as bold text for the last path section (the current directory).
