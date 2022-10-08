@@ -64,7 +64,7 @@ func main() {
 	}
 
 	wg.Wait()
-	//sep := string(os.PathSeparator)
+
 	sep := "%{\033[38;5;255m%}\ue216%{\033[38;5;0m%}"
 	fmt.Printf("%%{\033[38;5;231m%%}\uf554%s%%{\033[38;5;0m%%}%s", spaceChar, strings.Join(newParts, sep))
 }

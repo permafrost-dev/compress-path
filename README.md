@@ -12,6 +12,24 @@ Compress and abbreviate the parts of a pathname into a shorter overall string; f
 
 ## Setup
 
+Download and extract `compress-path` to your `$PATH`. Then, add the following to your `.zshrc`:
+
+```bash
+export PS1='$(compress-path) >'
+```
+
+If you're using `oh-my-zsh`, edit your `~/.oh-my-zsh/your-theme.zsh-theme` and modify the `prompt_dir` (or similar) function to look something like this:
+
+```bash
+prompt_dir() {
+  prompt_segment blue $CURRENT_FG $(compress-path)
+}
+```
+
+## Building from source
+
+`compress-path` prefers `task` for running tasks - see [taskfile.dev](https://taskfile.dev) for more information. If you don't have `task` installed, you can use `make` instead.
+
 ```bash
 task build
 # or
